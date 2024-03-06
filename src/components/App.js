@@ -3,40 +3,52 @@ import '../styles/App.css';
 
 class App extends Component {
     constructor(props) {
-        super(props)
-        this.state = {
-            renderBall: false,
-            posi : 0,
-            ballPosition: { left: "0px" }
-        };
-        this.renderChoice = this.renderBallOrButton.bind(this)
-        this.buttonClickHandler = this.buttonClickHandler.bind(this)
-    };
-
+      super(props);
+      this.state = {
+        renderBall: false,
+        posi: 0,
+        ballPosition: { left: "0px" },
+      };
+      this.renderChoice = this.renderBallOrButton.bind(this);
+      this.buttonClickHandler = this.buttonClickHandler.bind(this);
+    }
+  
     buttonClickHandler() {
-   
-   }
+      this.setState({ renderBall: true });
+    }
+  
     renderBallOrButton() {
-		if (this.state.renderBall) {
-		    return <div className="ball" style={this.state.ballPosition}></div>
-		} else {
-		    return <button onClick={this.buttonClickHandler} >Start</button>
-		}
+      if (this.state.renderBall) {
+        return <div className="ball" style={this.state.ballPosition}></div>;
+      } else {
+        return <button onClick={this.buttonClickHandler}>Start</button>;
+      }
     }
-
-    // bind ArrowRight keydown event
+  
+    handleArrowRight = (event) => {
+      if (event.key === "ArrowRight") {
+        this.setState((prevState) => {
+          const newPosi = prevState.posi + 5;
+          return {
+            posi: newPosi,
+            ballPosition: { left: `${newPosi}px` },
+          };
+        });
+      }
+    };
+  
     componentDidMount() {
-      
+      document.addEventListener("keydown", this.handleArrowRight);
     }
-
+  
+    componentWillUnmount() {
+      document.removeEventListener("keydown", this.handleArrowRight);
+    }
+  
     render() {
-        return (
-            <div className="playground">
-                {this.renderBallOrButton()}
-            </div>
-        )
+      return <div className="playground">{this.renderBallOrButton()}</div>;
     }
-}
-
-
-export default App;
+  }
+  
+  export default App;
+  
