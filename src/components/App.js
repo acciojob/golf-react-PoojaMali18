@@ -14,7 +14,8 @@ const App = () => {
 
   const handleArrowRight = (event) => {
     if (event.key === "ArrowRight") {
-      setPosi((prevPosi) => (prevPosi === 0 ? prevPosi + 5 : prevPosi));
+        setPosi((prevPosi) => (prevPosi === 0 ? '5px' : prevPosi));
+
     }
   };
 
