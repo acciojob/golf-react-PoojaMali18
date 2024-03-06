@@ -32,9 +32,9 @@ const App = () => {
 
   const renderBallOrButton = () => {
     if (renderBall) {
-      return <div className="ball" style={ballPosition}></div>;
+      return <div className="ball" data-testid="ball" style={ballPosition}></div>;
     } else {
-      return <button onClick={buttonClickHandler}>Start</button>;
+      return <button className="start" data-testid="start" onClick={buttonClickHandler}>Start</button>;
     }
   };
 
