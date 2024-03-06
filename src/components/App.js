@@ -1,3 +1,5 @@
+// App.js
+
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 
@@ -12,7 +14,7 @@ const App = () => {
 
   const handleArrowRight = (event) => {
     if (event.key === "ArrowRight") {
-      setPosi((prevPosi) => prevPosi + 5);
+      setPosi((prevPosi) => (prevPosi === 0 ? prevPosi + 5 : prevPosi));
     }
   };
 
